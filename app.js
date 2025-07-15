@@ -41,9 +41,13 @@ function addTask(){
 function displayTasks() {
     const container = document.querySelector('.tasks-div');
     container.innerHTML = '';
+    container.style.display = 'flex';
+    container.style.flexDirection = 'column';
+    container.style.alignItems = 'flex-start';
+    container.style.justifyContent = 'flex-start';
+    container.style.overflow = 'auto';
 
     if (tasks.length === 0){
-        container.style.display = 'flex'
         container.style.alignItems = 'center';
         container.style.justifyContent = 'center';
         container.style.overflow = 'hidden';
