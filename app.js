@@ -80,3 +80,9 @@ function deleteTask(index) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
     displayTasks();
 }
+
+function handleKeyDown(event){
+    if(event.key === 'Enter'){
+        addTask();
+    }
+}
