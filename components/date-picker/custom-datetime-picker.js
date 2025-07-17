@@ -74,11 +74,27 @@ class DateTimePicker{
         document.querySelector('.datetime-picker-input').addEventListener('click', () => {
             this.showDropdown();
         });
+
+        document.querySelector('.cancel-button').addEventListener('click', () => {
+            this.hideDropdown();
+        });
+
+        const datetimeInput = document.querySelector('.datetime-picker-input');
+        document.addEventListener('click', (e) => {
+            if(!datetimeInput.contains(e.target) && !this.dropdown.contains(e.target)) 
+                this.hideDropdown();
+        });
     }
 
     // helper functions
     showDropdown(){
+        document.querySelector('.datetime-picker-input').classList.add('dropdown-active');
         this.dropdown.classList.add('show');
+    }
+
+    hideDropdown() {
+        document.querySelector('.datetime-picker-input').classList.remove('dropdown-active');
+        this.dropdown.classList.remove('show');
     }
 }
 

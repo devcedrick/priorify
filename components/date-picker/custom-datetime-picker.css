@@ -5,6 +5,7 @@ button{
     border-radius: 5px;
     padding: 0.3rem 1rem;
     cursor: pointer;
+    background-color: rgb(208, 215, 223);
 }
 
 .datetime-picker{
@@ -19,6 +20,10 @@ button{
     border-radius: 10px;
     cursor: pointer;
     box-sizing: border-box;
+}
+
+.datetime-picker-input.dropdown-active {
+    border-radius: 10px 10px 0 0;
 }
 
 .datetime-dropdown{
