@@ -1,3 +1,13 @@
+const taskInput = document.querySelector('.js-task-input');
+const datetimePicker = document.querySelector('.datetime-picker');
+const fp = flatpickr(".datetime-picker", {
+    enableTime: true,
+    altInput: true,
+    altFormat: "F j, Y (h:i K)",
+    dateFormat: "Y-m-d H:i",
+    time_24hr: false,
+});
+
 function getTasksFromStorage(){
     try{
         const storedTask = localStorage.getItem('tasks');
@@ -16,29 +26,55 @@ function getTasksFromStorage(){
 }
 
 const tasks = getTasksFromStorage();
-displayTasks();
+renderTasks();
 
 function addTask(){
-    const taskInput = document.querySelector('.js-task-input');
-    const taskName = taskInput.value.trim();
+    if (validateForm()){
+        taskInput.style.borderColor = 'black';
 
-    const inputError = document.querySelector('.input-error');
-    if (taskName === ''){
-        inputError.classList.add('visible');
-        taskInput.style.borderColor = 'red';
-        return;
+        tasks.push({
+            name: taskInput.value,
+            duedDate: fp.selectedDates[0]
+        });
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        renderTasks();
+            
+        taskInput.value = '';
+        fp.clear();
     }
-    inputError.classList.remove('visible');
-    taskInput.style.borderColor = 'black';
-
-    tasks.push(taskName);
-    localStorage.setItem('tasks', JSON.stringify(tasks));
-    displayTasks();
-        
-    taskInput.value = '';
+    
 }
 
-function displayTasks() {
+const validateForm = () => {
+    let isValid = true;
+
+    const nameEmpty = document.querySelector('.task-error');
+    const dateEmpty = document.querySelector('.date-error');
+
+    // reset previous errors
+    nameEmpty.classList.remove('visible');
+    dateEmpty.classList.remove('visible');
+    taskInput.style.borderColor = '';
+    datetimePicker.style.borderColor = '';
+
+    // check task name
+    if (taskInput.value.trim() === '') {
+        taskInput.style.border = '1px solid red';
+        nameEmpty.classList.add('visible');
+        isValid = false;
+    }
+
+    // check date selection
+    if (fp.selectedDates.length === 0) {
+        datetimePicker.style.border = '1px solid red';
+        dateEmpty.classList.add('visible');
+        isValid = false;
+        console.log('No dates were selected!');
+    }
+    return isValid;
+}
+
+function renderTasks() {
     const container = document.querySelector('.tasks-div');
     container.innerHTML = '';
     container.style.display = 'flex';
@@ -61,7 +97,7 @@ function displayTasks() {
 
     for (let i=0; i<tasks.length; i++){
         const task = document.createElement('p');
-        task.textContent = tasks[i];
+        task.textContent = tasks[i].name + ' | ' + String(tasks[i].dueDate);
 
         // Delete Button 
         const deleteButton = document.createElement('button');
@@ -78,7 +114,7 @@ function displayTasks() {
 function deleteTask(index) {
     tasks.splice(index, 1);
     localStorage.setItem('tasks', JSON.stringify(tasks));
-    displayTasks();
+    renderTasks();
 }
 
 function handleKeyDown(event){

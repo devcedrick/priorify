@@ -1,0 +1,57 @@
+.app-name{
+    color: #001A23;
+    letter-spacing: 8px;
+    font-weight: 500;
+}
+
+.js-task-input,
+.datetime-picker,
+.add-btn{
+    font-size: 0.9rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: 10px;
+    border: none;
+}
+
+.add-btn{
+    padding: 0.5rem 2rem;
+    margin: 0 1rem;
+    cursor: pointer;
+    background-color: #001A23;
+    color: white;
+    border: none;
+}
+
+.input-group{
+    position: relative;
+}
+
+.task-error,
+.date-error{
+    color: red;
+    margin: 0.3rem 0;
+    font-size: 0.8rem;
+    display: none;
+}
+
+.task-error.visible,
+.date-error.visible{
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin: 0.25rem;
+    display: block;
+}
+
+.tasks-div{
+    height: 40vh;
+    padding: 1rem;
+    margin: 2.5rem 0;
+    border: 1px solid black;
+    overflow: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
