@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Custom Date & Time Picker</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../css/base.css">
+        <link rel="stylesheet" href="custom-datetime-picker.css">
+        <script src="custom-datetime-picker.js" defer></script>
+    </head>
+    <body>
+        <div class="datetime-picker">
+            <input class="datetime-picker-input" placeholder="Select Date & Time...">
+            <div class="datetime-dropdown">
+                <div class="datetime-tab">
+                    <button class="tab-button active" data-tab="date">Date</button>
+                    <button class="tab-button" data-tab="time">Time</button>
+                </div>
+                <div class="tab-content active">
+                    <div class="date-header">
+                        <button class="nav-button" id="prevMonth">‹</button>
+                        <div class="month-year"></div>
+                        <button class="nav-button" id="nextMonth">›</button>
+                    </div>
+
+                    <div class="calendar-grid">
+                        <button class="calendar-grid"></button>
+                    </div>
+                </div>
+
+                <div class="action-div">
+                    <button class="cancel-button">Cancel</button>
+                    <button class="affirmative-button">Next</button>
+                </div>
+
+                <!--for time-->
+                <div class="tab-content" >
+                    <div class="time-picker">
+                        <input type="number" class="time-input" id="hour" min="1" max="12" value="12">
+                        <span class="time-separator">:</span>
+                        <input type="number" class="time-input" id="minute" min="0" max="59" value="00">
+                        <button class="ampm-button">PM</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </body>
+</html>

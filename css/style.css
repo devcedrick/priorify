@@ -1,5 +1,9 @@
+div{
+  display: inline-block;
+}
+
 .app-name{
-    color: #001A23;
+    color: #ECA72C;
     letter-spacing: 8px;
     font-weight: 500;
 }
@@ -17,8 +21,8 @@
     padding: 0.5rem 2rem;
     margin: 0 1rem;
     cursor: pointer;
-    background-color: #001A23;
-    color: white;
+    background-color: #ECA72C;
+    color: black;
     border: none;
 }
 

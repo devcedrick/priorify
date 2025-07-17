@@ -14,9 +14,5 @@ html{
 
     font-family:'Nunito Variable', Arial, Helvetica, sans-serif;
     font-size: clamp(16px, 2vw, 20px);
-    background-color: #B3EFB2;
-}
-
-div{
-  display: inline-block;
+    background-color: #221E22 ;
 }
