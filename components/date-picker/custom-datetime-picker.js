@@ -2,7 +2,7 @@ class DateTimePicker{
     constructor(inputElement) {
         this.input = inputElement;
         this.dropdown = document.querySelector('.datetime-dropdown');
-        this.currentDate = new Date();
+        this.currentDate = new Date(); // today
         this.selectedDate = null;
         this.selectedTime = {
             hours: 12,
@@ -46,6 +46,8 @@ class DateTimePicker{
         }
 
         // populate days of the month
+        const today = new Date();
+
         const firstDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1);
         const lastDay = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth()+1, 0);
         const calStart = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth(), 1-firstDay.getDay());
@@ -61,7 +63,8 @@ class DateTimePicker{
                 daysGrid.classList.add('inactive-day');
             }
 
-            if(day.getDate() === this.currentDate.getDate())
+            // highlight the day of this current date
+            if(day.getDate() === today.getDate() && day.getMonth() === today.getMonth() && day.getFullYear() === today.getFullYear())
                 daysGrid.classList.add('current-day');
 
             daysGrid.textContent = `${day.getDate()}`;
@@ -105,12 +108,24 @@ class DateTimePicker{
             e.target.textContent = isAM ? 'PM' : 'AM';
             e.target.classList.toggle('active');
         });
+        
+        // navigate through previous/next months
+        document.getElementById('prevMonth').addEventListener('click', () => {
+            this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+            this.populateCalendar();
+        });
+
+        document.getElementById('nextMonth').addEventListener('click', () => {
+            this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+            this.populateCalendar();
+        });
     }
 
     // helper functions
     showDropdown(){
         document.querySelector('.datetime-picker-input').classList.add('dropdown-active');
         this.dropdown.classList.add('show');
+        this.switchTab('date');
     }
 
     hideDropdown() {

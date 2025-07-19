@@ -67,9 +67,11 @@ button{
 
 .date-header {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    align-items: center;
     margin: 0.4rem 0;
     gap: 1rem;
+    padding: 0 1.25rem;
 }
 
 .nav-button{
@@ -186,5 +188,4 @@ button{
     aspect-ratio: 1;
     font-size: 0.8rem;
     font-weight: 500;
-
 }
