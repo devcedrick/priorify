@@ -19,6 +19,7 @@ class DateTimePicker{
     init(){
         this.populateCalendar();
         this.setupEventListener();
+        this.updateTimeInputs();
     }
 
     populateCalendar(){
@@ -61,16 +62,23 @@ class DateTimePicker{
 
             if(day.getMonth() != this.currentDate.getMonth()){
                 daysGrid.classList.add('inactive-day');
+                daysGrid.disabled = true;
             }
 
             // highlight the day of this current date
             if(day.getDate() === today.getDate() && day.getMonth() === today.getMonth() && day.getFullYear() === today.getFullYear())
                 daysGrid.classList.add('current-day');
 
+            if(this.selectedDate != null){
+                if(day.getDate() === this.selectedDate.getDate() && day.getMonth() === this.selectedDate.getMonth() && day.getFullYear() === this.selectedDate.getFullYear())
+                daysGrid.classList.add('selected');
+            }
+
+            daysGrid.dataset.date = day.toISOString();
             daysGrid.textContent = `${day.getDate()}`;
+
             grid.appendChild(daysGrid);
         }
-
     }
 
     setupEventListener(){
@@ -98,8 +106,10 @@ class DateTimePicker{
         document.querySelector('.affirmative-button').addEventListener('click', (e) => {
             if(e.target.textContent === 'Next')
                 this.switchTab('time');
-            else
+            else{
+                document.querySelector('.datetime-picker-input').value = this.formmatDateTime();
                 this.hideDropdown();
+            }
         });
 
         // AM/PM toggling
@@ -107,6 +117,7 @@ class DateTimePicker{
             const isAM = e.target.textContent === 'AM';
             e.target.textContent = isAM ? 'PM' : 'AM';
             e.target.classList.toggle('active');
+            this.selectedTime.ampm = e.target.textContent;
         });
         
         // navigate through previous/next months
@@ -119,6 +130,37 @@ class DateTimePicker{
             this.currentDate.setMonth(this.currentDate.getMonth() + 1);
             this.populateCalendar();
         });
+
+        // date selection
+        document.querySelector('.calendar-grid').addEventListener('click', e => {
+            if(e.target.classList.contains('calendar-day')){
+                const day = e.target.dataset.date;
+                this.selectDay(new Date(day), e)
+            }
+        });
+
+        // time inputs
+        document.getElementById('hour').addEventListener('input', (e) => {
+            let value = parseInt(e.target.value);
+            if (value < 1 || e.target.value === '') value = 1;
+            if (value > 12) value = 12;
+            e.target.value = value;
+            this.selectedTime.hours = value;
+        });
+        
+        document.getElementById('minute').addEventListener('input', (e) => {
+            let value = parseInt(e.target.value);
+            if (value < 0) value = 0;
+            if (value > 59) value = 59;
+            e.target.value = value.toString().padStart(2, '0');
+            this.selectedTime.minutes = value;
+        });
+    }
+
+    updateTimeInputs(){
+        document.getElementById('hour').value = this.selectedTime.hours.toString();
+        document.getElementById('minute').value = this.selectedTime.minutes.toString().padStart(2, '0');
+        document.querySelector('.ampm-button').value = this.selectedTime.ampm;
     }
 
     // helper functions
@@ -150,6 +192,40 @@ class DateTimePicker{
         } else if (affirmativeButton.textContent === 'Confirm' && tabName === 'date') {
             affirmativeButton.textContent = 'Next';
         }
+    }
+
+    selectDay(date, e){
+        this.selectedDate = date
+        document.querySelectorAll('.calendar-day').forEach(btn => {
+            btn.classList.remove('selected');
+        });
+        e.target.classList.add('selected');
+        console.log(this.selectedDate);
+    }
+
+    formmatDateTime(){
+        const weekDayOptions = {
+            weekday : 'short'
+        };
+
+        const dateOptions = {
+            year : 'numeric',
+            month : 'short',
+            day : 'numeric'
+        };  
+
+        const timeOptions = {
+            hour : '2-digit',
+            minutes : '2-digit',
+            second : '2-digit'
+        }
+
+        const weekdayStr = this.selectedDate.toLocaleDateString('en-US', weekDayOptions);
+
+        const dateStr = this.selectedDate.toLocaleDateString('en-US', dateOptions);
+        const timeStr = `${this.selectedTime.hours}:${this.selectedTime.minutes.toString().padStart(2, '0')} ${this.selectedTime.ampm}`;
+
+        return `(${weekdayStr}) ${dateStr} at ${timeStr}`;
     }
 }
 

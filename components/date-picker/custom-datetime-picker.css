@@ -20,6 +20,7 @@ button{
     border-radius: 10px;
     cursor: pointer;
     box-sizing: border-box;
+    font-size: 0.85rem;
 }
 
 .datetime-picker-input.dropdown-active {
@@ -30,6 +31,7 @@ button{
     width: 100%;
     border: 1px solid black;
     display: none;
+    border-radius: 0 0 10px 10px;
 }
 
 .datetime-dropdown.show{
@@ -114,21 +116,27 @@ button{
     background-color: #f6a61d7c;
 }
 
-.selected-day,
-.selected-day:hover{
+.calendar-day.selected,
+.calendar-day:active {
     background-color: #ECA72C;
 }
 
 .calendar-day:hover {
-    background-color: #f6a61d7c;
+    background-color: transparent;
+    border: 3px solid #ECA72C;
     transform: scale(1.2);
     transition: all ease-in-out 0.2s;
 }
 
+.calendar-day.selected:hover {
+    background-color: #ECA72C;
+    border: none;
+}
 
 .inactive-day:hover {
   background-color: transparent;
   transform: none;
+  border: none;
   cursor: not-allowed;
 }
 
