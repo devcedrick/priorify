@@ -92,8 +92,12 @@ class DateTimePicker{
 
         const datetimeInput = document.querySelector('.datetime-picker-input');
         document.addEventListener('click', (e) => {
-            if(!datetimeInput.contains(e.target) && !this.dropdown.contains(e.target)) 
+            if(!datetimeInput.contains(e.target) && !this.dropdown.contains(e.target)) {
+                if (this.selectedDate) 
+                    document.querySelector('.datetime-picker-input').value = this.formatDateTime();
+                
                 this.hideDropdown();
+            }
         });
 
         // tab switching
@@ -104,10 +108,18 @@ class DateTimePicker{
         });
 
         document.querySelector('.affirmative-button').addEventListener('click', (e) => {
-            if(e.target.textContent === 'Next')
+            if(e.target.textContent === 'Next'){
                 this.switchTab('time');
+            }
             else{
-                document.querySelector('.datetime-picker-input').value = this.formmatDateTime();
+                if(this.selectedDate === null){
+                    document.querySelector('.datetime-picker-input').classList.add('error');
+                    return;
+                } else {
+                    document.querySelector('.datetime-picker-input').value = this.formatDateTime();
+                    document.querySelector('.datetime-picker-input').classList.remove('error');
+                }
+                
                 this.hideDropdown();
             }
         });
@@ -168,11 +180,15 @@ class DateTimePicker{
         document.querySelector('.datetime-picker-input').classList.add('dropdown-active');
         this.dropdown.classList.add('show');
         this.switchTab('date');
+
+        document.querySelector('.datetime-picker-input').classList.add('focus');
     }
 
     hideDropdown() {
         document.querySelector('.datetime-picker-input').classList.remove('dropdown-active');
         this.dropdown.classList.remove('show');
+
+        document.querySelector('.datetime-picker-input').classList.remove('focus');
     }
 
     switchTab(tabName) {
@@ -203,7 +219,7 @@ class DateTimePicker{
         console.log(this.selectedDate);
     }
 
-    formmatDateTime(){
+    formatDateTime(){
         const weekDayOptions = {
             weekday : 'short'
         };
@@ -213,12 +229,6 @@ class DateTimePicker{
             month : 'short',
             day : 'numeric'
         };  
-
-        const timeOptions = {
-            hour : '2-digit',
-            minutes : '2-digit',
-            second : '2-digit'
-        }
 
         const weekdayStr = this.selectedDate.toLocaleDateString('en-US', weekDayOptions);
 

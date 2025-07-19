@@ -21,6 +21,21 @@ button{
     cursor: pointer;
     box-sizing: border-box;
     font-size: 0.85rem;
+    color: black;
+}
+
+.datetime-picker-input.focus{
+    outline: 3px solid #ECA72C;
+    box-shadow: none;
+    border: none;
+}
+
+.datetime-picker-input.error{
+    outline: 2px solid red;
+    box-shadow: none;
+    border: none;
+    color: red;
+    opacity: 1;
 }
 
 .datetime-picker-input.dropdown-active {
