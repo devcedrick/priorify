@@ -84,6 +84,27 @@ class DateTimePicker{
             if(!datetimeInput.contains(e.target) && !this.dropdown.contains(e.target)) 
                 this.hideDropdown();
         });
+
+        // tab switching
+        document.querySelectorAll('.tab-button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                this.switchTab(e.target.dataset.tab);
+            });
+        });
+
+        document.querySelector('.affirmative-button').addEventListener('click', (e) => {
+            if(e.target.textContent === 'Next')
+                this.switchTab('time');
+            else
+                this.hideDropdown();
+        });
+
+        // AM/PM toggling
+        document.querySelector('.ampm-button').addEventListener('click', (e) =>  {
+            const isAM = e.target.textContent === 'AM';
+            e.target.textContent = isAM ? 'PM' : 'AM';
+            e.target.classList.toggle('active');
+        });
     }
 
     // helper functions
@@ -95,6 +116,25 @@ class DateTimePicker{
     hideDropdown() {
         document.querySelector('.datetime-picker-input').classList.remove('dropdown-active');
         this.dropdown.classList.remove('show');
+    }
+
+    switchTab(tabName) {
+        // update tab button
+        document.querySelectorAll('.tab-button').forEach(btn =>{
+            btn.classList.toggle('active', btn.dataset.tab === tabName);
+        })
+
+        // update calendar or time picker view
+        document.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.toggle('active', content.dataset.tab === tabName);
+        });
+
+        const affirmativeButton = document.querySelector('.affirmative-button');
+        if(affirmativeButton.textContent === 'Next' && tabName === 'time') {
+            affirmativeButton.textContent = 'Confirm';
+        } else if (affirmativeButton.textContent === 'Confirm' && tabName === 'date') {
+            affirmativeButton.textContent = 'Next';
+        }
     }
 }
 

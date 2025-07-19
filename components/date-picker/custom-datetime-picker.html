@@ -10,13 +10,13 @@
     </head>
     <body>
         <div class="datetime-picker">
-            <input class="datetime-picker-input" placeholder="Select Date & Time...">
+            <input class="datetime-picker-input" placeholder="Select Date & Time..." readonly>
             <div class="datetime-dropdown">
-                <div class="datetime-tab">
+                <div class="datetime-tab" >
                     <button class="tab-button active" data-tab="date">Date</button>
                     <button class="tab-button" data-tab="time">Time</button>
                 </div>
-                <div class="tab-content active">
+                <div class="tab-content active" data-tab="date">
                     <div class="date-header">
                         <button class="nav-button" id="prevMonth">‹</button>
                         <div class="month-year"></div>
@@ -28,19 +28,19 @@
                     </div>
                 </div>
 
-                <div class="action-div">
-                    <button class="cancel-button">Cancel</button>
-                    <button class="affirmative-button">Next</button>
-                </div>
-
                 <!--for time-->
-                <div class="tab-content" >
+                <div class="tab-content" data-tab="time">
                     <div class="time-picker">
                         <input type="number" class="time-input" id="hour" min="1" max="12" value="12">
                         <span class="time-separator">:</span>
                         <input type="number" class="time-input" id="minute" min="0" max="59" value="00">
-                        <button class="ampm-button">PM</button>
+                        <button class="ampm-button active">PM</button>
                     </div>
+                </div>
+
+                <div class="action-div">
+                    <button class="cancel-button">Cancel</button>
+                    <button class="affirmative-button">Next</button>
                 </div>
             </div>
         </div>
