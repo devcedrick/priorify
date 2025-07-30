@@ -42,6 +42,7 @@ class Main{
                 this._userData = userData;
                 localStorage.setItem('userData', JSON.stringify(userData));
                 document.querySelector('.name-modal-backdrop').style.display = 'none';
+                this.updateName();
             } 
             else
                 alert('Please enter name');
@@ -56,7 +57,8 @@ class Main{
     }
 
     updateName(){
-        document.querySelector('.user-name').textContent = this._userData.name;
+        if(this._userData.name)
+            document.querySelector('.user-name').textContent = this._userData.name;
     }
 
     confirmName(userObj, name) {

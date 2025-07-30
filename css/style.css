@@ -12,12 +12,12 @@ div{
     font-weight: 500;
 }
 
-.name-input-modal{
-    border: 1px solid black;
+.name-input-modal {
     padding: 1.5rem;
     width: 25vw;
     height: auto;
     border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15); /* subtle border */
     
     display: flex;
     flex-direction: column;
@@ -27,7 +27,12 @@ div{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -60%);
+    
+    background-color: #292445; /* deep navy/dark purple for contrast */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s ease;
 }
+
 
 .name-modal-backdrop{
     z-index: 99;
@@ -37,7 +42,7 @@ div{
     width: 100vw;
     height: 100vh;
 
-    backdrop-filter: blur(4px);
+    background-color: #2E294E;
     pointer-events: all;
     display: flex;
 }
@@ -62,6 +67,7 @@ div{
     margin: 0.3rem 0;
     width: 100%;
     display: block;
+    color: black;
 }
 
 .confirm-modal-div{
@@ -77,59 +83,51 @@ div{
     margin: 1rem 0 0;
     cursor: pointer;
 }
-
-.user-greetings{
-    font-weight: 700;
-}
-
-.js-task-input,
-.datetime-picker,
-.add-btn{
-    font-size: 0.9rem;
-    padding: 0.5rem 0.85rem;
-    border-radius: 10px;
-    border: none;
-}
-
-.add-btn{
-    padding: 0.5rem 2rem;
-    margin: 0 1rem;
-    cursor: pointer;
-    background-color: #ECA72C;
-    color: black;
-    border: none;
-}
-
-.input-group{
-    position: relative;
-}
-
-.task-error,
-.date-error{
-    color: red;
-    margin: 0.3rem 0;
-    font-size: 0.8rem;
-    display: none;
-}
-
-.task-error.visible,
-.date-error.visible{
-    position: absolute;
-    left: 0;
-    top: 100%;
-    margin: 0.25rem;
-    display: block;
-}
-
-.tasks-div{
-    height: 40vh;
-    padding: 1rem;
-    margin: 2.5rem 0;
-    border: 1px solid black;
-    overflow: auto;
-
+.user-greetings-div{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%, -50%);
 }
+
+.user-greetings,
+.user-name{
+    font-weight: bold;
+    color: white;
+    font-size: 3rem;
+}
+
+.sub-greetings{
+    font-weight: 200;
+    font-size: 1rem;
+    margin: 0 0 2rem;
+}
+
+.init-add-proj-button {
+    color: black;
+    padding: 0.8rem 2.5rem;
+    background-color: #FFD400;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 100;
+}
+
+.init-add-proj-button:hover {
+    background-color: #ffdb3a; /* Slightly lighter yellow */
+    transform: translateY(-2px); /* Subtle lift */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Clean shadow */
+}
+
+.init-add-proj-button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
