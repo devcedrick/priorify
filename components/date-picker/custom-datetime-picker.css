@@ -11,6 +11,8 @@ button{
 .datetime-picker{
     display: inline-block;
     width: 320px;
+
+    border: 1px solid black;
 }
 
 .datetime-picker-input{

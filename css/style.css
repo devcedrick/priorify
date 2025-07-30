@@ -2,10 +2,84 @@ div{
   display: inline-block;
 }
 
-.app-name{
+.temp-div{
+    visibility: hidden;
+}
+
+.user-greetings{
     color: #ECA72C;
     letter-spacing: 8px;
     font-weight: 500;
+}
+
+.name-input-modal{
+    border: 1px solid black;
+    padding: 1.5rem;
+    width: 25vw;
+    height: auto;
+    border-radius: 10px;
+    
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    z-index: 100;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+}
+
+.name-modal-backdrop{
+    z-index: 99;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    backdrop-filter: blur(4px);
+    pointer-events: all;
+    display: flex;
+}
+
+.welcome-text{
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin: 0.3rem 0;
+}
+
+.nickname-query{
+    font-size: 0.8rem;
+    font-weight: 300;
+    margin: 0.3rem 0;
+}
+
+.nickname-input{
+    padding: 0.35rem 1rem;
+    border-radius: 10px;
+    border: 1px solid black;
+    font-size: 0.8rem;
+    margin: 0.3rem 0;
+    width: 100%;
+    display: block;
+}
+
+.confirm-modal-div{
+    display: flex;
+    justify-content: right;
+}
+
+.confirm-modal-button{
+    padding: 0.5rem 1.5rem;
+    background-color: #FFD400;
+    border: none;
+    border-radius: 10px;
+    margin: 1rem 0 0;
+    cursor: pointer;
+}
+
+.user-greetings{
+    font-weight: 700;
 }
 
 .js-task-input,

@@ -5,31 +5,27 @@
         <title>Priorify</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/base.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     </head>
+    
     <body>
-        <h1 class="app-name">PRIORIFY</h1>
-
-        <div class="input-group">
-            <input class="js-task-input" placeholder="Task Name" onkeydown="handleKeyDown(event);">
-            <p class="task-error">Please enter some text.</p>
+        <div class="name-modal-backdrop" hidden>
+            <div class="name-input-modal">
+                <h1 class="welcome-text">Welcome!</h1>
+                <p class="nickname-query">How should I call you?</p>
+                <input class="nickname-input" type="text" placeholder="Nickname">
+                <div class="confirm-modal-div">
+                    <button class="confirm-modal-button">Confirm</button>
+                </div>
+            </div>
         </div>
 
-        <div class="input-group">
-            <input type="text" class="datetime-picker" placeholder="Select date and time">
-            <p class="date-error">Task due date is empty.</p>
-        </div>
-        
-        
+        <h1 class="user-greetings">Hi <span class="user-name">User</span>! </h1>
 
         
-        <button class="add-btn" onclick="addTask();">Add</button>
         
-        <section class="tasks-div"></section>
 
         <script src="js/app.js"></script>
     </body>

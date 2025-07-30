@@ -1,4 +1,4 @@
-class DateTimePicker{
+    export class DateTimePicker{
     constructor(inputElement) {
         this.input = inputElement;
         this.dropdown = document.querySelector('.datetime-dropdown');
@@ -238,8 +238,3 @@ class DateTimePicker{
         return `(${weekdayStr}) ${dateStr} at ${timeStr}`;
     }
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    const input = document.getElementById('datetimeInput');
-    new DateTimePicker(input);
-});
